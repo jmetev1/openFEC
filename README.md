@@ -51,7 +51,7 @@ We are always trying to improve our documentation. If you have suggestions or ru
          * Read a [Windows tutorial](http://www.postgresqltutorial.com/install-postgresql/)
          * Read a [Linux tutorial](https://www.postgresql.org/docs/9.4/static/installation.html) (or follow your OS package manager)
     * Elastic Search 7.x (instructions [here](https://www.elastic.co/guide/en/elasticsearch/reference/7.x/_installation.html))
-    * Flyway 8.5.1 ([download](https://flywaydb.org/documentation/commandline/))(Open Safari browser to download for MacOS user)
+    * Flyway 8.5.1 ([download](https://flywaydb.org/documentation/commandline/))(Open Safari browser to download for MacOS user on local)
 		* After downloading, open `flyway8.5.1/conf/flyway.conf` and set
            the flyway environment variables `flyway.url` and
            `flyway.locations` as
