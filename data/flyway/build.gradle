@@ -63,7 +63,7 @@ task createRunScript {
 
 task copyPostgresJar(type: Copy) {
     into "$buildDir/drivers"
-    from configurations.runtime
+    from configurations.runtimeOnly
     include "postgres*.jar"
 }
 
