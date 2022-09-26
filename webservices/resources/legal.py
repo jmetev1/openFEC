@@ -155,14 +155,25 @@ def generic_query_builder(q, type_, from_hit, hits_returned, **kwargs):
         .source(exclude=["text", "documents.text", "sort1", "sort2"])
         .extra(size=hits_returned, from_=from_hit)
         .index("docs_search")
-        .sort("sort1", "sort2")
     )
+
+
     logger.debug("generic_query_builder =" + json.dumps(query.to_dict(), indent=3, cls=DateTimeEncoder))
     return query
 
 
 def case_query_builder(q, type_, from_hit, hits_returned, **kwargs):
     query = generic_query_builder(None, type_, from_hit, hits_returned, **kwargs)
+
+    # sort by 'no'(include "murs","adrs","admin_fines"), default is desc
+    if kwargs.get("sort"):
+        if kwargs.get('sort').upper() == '-NO':
+            query = query.sort({"no" : {"order" : "asc"}})
+        else:
+            query = query.sort({"no" : {"order" : "desc"}})
+    else:
+        query = query.sort({"no" : {"order" : "desc"}})
+
 
     should_query = [
         get_case_document_query(q, **kwargs),

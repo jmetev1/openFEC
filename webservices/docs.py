@@ -49,6 +49,10 @@ PAGES = '''
 Number of pages in the document
 '''
 
+SORT = '''
+Provide a field to sort by. Use `-` for descending order.
+'''
+
 # ======== candidate start ===========
 CANDIDATE_TAG = '''
 Candidate endpoints give you access to information about the people running for office.
