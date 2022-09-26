@@ -23,7 +23,8 @@ logger = logging.getLogger(__name__)
 ALL_ARCHIVED_MURS = """
     SELECT DISTINCT
         mur_id,
-        mur_number as mur_no
+        mur_number as mur_no,
+        mur_id as case_serial
     FROM MUR_ARCH.ARCHIVED_MURS
     ORDER BY mur_id
 """
@@ -32,6 +33,7 @@ SINGLE_MUR = """
     SELECT DISTINCT
         mur_number as mur_no,
         mur_id,
+        mur_id as case_serial,
         mur_name,
         open_date,
         close_date
@@ -172,6 +174,7 @@ def get_single_mur(mur_no):
                 "type": get_es_type(),
                 "doc_id": "mur_{0}".format(row["mur_no"]),
                 "no": row["mur_no"],
+                "case_serial": row["mur_id"],
                 "url": "/legal/matter-under-review/{0}/".format(row["mur_no"]),
                 "mur_type": "archived",
                 "mur_name": row["mur_name"],
