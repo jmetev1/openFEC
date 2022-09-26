@@ -56,6 +56,7 @@ ADMIN_FINES = {
     "type": {"type": "keyword"},
     "doc_id": {"type": "keyword"},
     "no": {"type": "keyword"},
+    "case_serial": {"type": "integer"},
     "name": {"type": "text", "analyzer": "english"},
     "published_flg": {"type": "boolean"},
     "commission_votes": {
@@ -198,6 +199,7 @@ MUR_MAPPINGS = {
     "type": {"type": "keyword"},
     "doc_id": {"type": "keyword"},
     "no": {"type": "keyword"},
+    "case_serial": {"type": "integer"},
     "name": {"type": "text", "analyzer": "english"},
     "published_flg": {"type": "boolean"},
     "commission_votes": {
@@ -244,6 +246,7 @@ ADR_MAPPINGS = {
     "type": {"type": "keyword"},
     "doc_id": {"type": "keyword"},
     "no": {"type": "keyword"},
+    "case_serial": {"type": "integer"},
     "name": {"type": "text", "analyzer": "english"},
     "published_flg": {"type": "boolean"},
     "complainant": {"type": "text"},
@@ -363,6 +366,7 @@ ARCH_MUR_MAPPINGS = {
         "type": {"type": "keyword"},
         "doc_id": {"type": "keyword"},
         "no": {"type": "keyword"},
+        "case_serial": {"type": "integer"},
         "mur_name": {"type": "text"},
         "mur_type": {"type": "keyword"},
         "open_date": {"type": "date", "format": "dateOptionalTime"},

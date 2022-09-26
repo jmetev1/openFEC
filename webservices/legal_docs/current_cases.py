@@ -25,6 +25,7 @@ ALL_CASES = """
     SELECT
         case_id,
         case_no,
+        case_serial,
         name,
         case_type,
         published_flg
@@ -37,6 +38,7 @@ SINGLE_CASE = """
     SELECT DISTINCT
         case_id,
         case_no,
+        case_serial,
         name,
         case_type,
         published_flg
@@ -364,6 +366,7 @@ def get_single_case(case_type, case_no, bucket):
                 "type": get_es_type(case_type),
                 "doc_id": "{0}_{1}".format(case_type.lower(), row["case_no"]),
                 "no": row["case_no"],
+                "case_serial": row["case_serial"],
                 "name": row["name"],
                 "published_flg": row["published_flg"],
                 "sort1": sort1,

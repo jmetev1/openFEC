@@ -155,14 +155,30 @@ def generic_query_builder(q, type_, from_hit, hits_returned, **kwargs):
         .source(exclude=["text", "documents.text", "sort1", "sort2"])
         .extra(size=hits_returned, from_=from_hit)
         .index("docs_search")
-        .sort("sort1", "sort2")
     )
+
+
     logger.debug("generic_query_builder =" + json.dumps(query.to_dict(), indent=3, cls=DateTimeEncoder))
     return query
 
 
 def case_query_builder(q, type_, from_hit, hits_returned, **kwargs):
     query = generic_query_builder(None, type_, from_hit, hits_returned, **kwargs)
+
+    # sort feature work on all cases: "murs","admin_fines","adrs"), default is desc
+    # so far only be able to sort by 'case_no'
+    if kwargs.get("sort"):
+        # if kwargs.get('sort').upper() == 'CLOSE_DATE':
+        #     print("$$$$$$")
+        #     query = query.sort({"close_date" : {"order" : "asc", "format": "date_nanos"}})
+
+        if kwargs.get('sort').upper() == 'CASE_NO':
+            query = query.sort({"case_serial" : {"order" : "asc"}})
+        else:
+            query = query.sort({"case_serial" : {"order" : "desc"}})
+    else:
+        query = query.sort({"case_serial" : {"order" : "desc"}})
+
 
     should_query = [
         get_case_document_query(q, **kwargs),
