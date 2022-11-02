@@ -143,6 +143,10 @@ class ScheduleAView(ItemizedResource):
                 raise exceptions.ApiError(
                     exceptions.LINE_NUMBER_ERROR, status_code=400,
                 )
+
+        print("$$$$$$####$$$$$$")
+        print(query)
+
         return query
 
 
