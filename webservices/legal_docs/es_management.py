@@ -799,7 +799,7 @@ def create_es_snapshot(index_name):
         }
         configure_snapshot_repository(repo_name)
         snapshot_name = "{0}_{1}".format(
-            prefix_snapshot, datetime.datetime.today().strftime("%Y%m%d%H%M")
+            datetime.datetime.today().strftime("%Y%m%d%H%M"), prefix_snapshot
         )
         logger.info(" Creating snapshot {0} ...".format(snapshot_name))
         result = es_client.snapshot.create(
