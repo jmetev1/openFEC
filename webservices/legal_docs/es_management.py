@@ -616,9 +616,10 @@ def restore_from_swapping_index(index_name=None):
     """
     1. Swith the SEARCH_ALIAS to point to XXXX_SWAP_INDEX instead of index_name(original_index).
     2. Re-create original_index (XXXX_INDEX)
-    3. Re-index XXXX_INDEX based on XXXX_SWAP_INDEX
-    4. Switch aliases (XXXX_ALIAS,SEARCH_ALIAS) point back to XXXX_INDEX
-    5. Delete XXXX_SWAP_INDEX
+    3. Remove XXXX_ALIAS and SEARCH_ALIAS that point new empty XXXX_INDEX
+    4. Re-index XXXX_INDEX based on XXXX_SWAP_INDEX
+    5. Switch aliases (XXXX_ALIAS,SEARCH_ALIAS) point back to XXXX_INDEX
+    6. Delete XXXX_SWAP_INDEX
 
     -How to call this function in Python code:
     a) restore_from_swapping_index(index_name)
@@ -646,7 +647,7 @@ def restore_from_swapping_index(index_name=None):
         INDEX_DICT.get(index_name)[1], SEARCH_ALIAS, index_name)
     )
 
-    # 3) Re-index XXXX_INDEX based on XXXX_SWAP_INDEX
+    # 4) Re-index XXXX_INDEX based on XXXX_SWAP_INDEX
     try:
         logger.info(" Reindexing all documents from index '{0}' to index '{1}'...".format(
             swapping_index, index_name)

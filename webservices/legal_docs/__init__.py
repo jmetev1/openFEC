@@ -116,15 +116,16 @@ def update_mapping_and_reload_legal_data(index_name=None):
     """
     When mapping change, run this command with short downtime(<5 mins)
 
-    Eight steps process:
+    Nine steps process:
     1. Create a XXXX_SWAP_INDEX
     2. Switch original_alias(XXXX_ALIAS) point to XXXX_SWAP_INDEX
     3. Load the legal data into original_alias(==XXXX_SWAP_INDEX)
     4. Switch the SEARCH_ALIAS point to XXXX_SWAP_INDEX
     5. Re-create original_index (XXXX_INDEX)
-    6. Re-index XXXX_INDEX based on XXXX_SWAP_INDEX
-    7. Switch aliases (XXXX_ALIAS,SEARCH_ALIAS) point back to XXXX_INDEX
-    8. Delete XXXX_SWAP_INDEX
+    6. Remove XXXX_ALIAS and SEARCH_ALIAS that point new empty XXXX_INDEX
+    7. Re-index XXXX_INDEX based on XXXX_SWAP_INDEX
+    8. Switch aliases (XXXX_ALIAS,SEARCH_ALIAS) point back to XXXX_INDEX
+    9. Delete XXXX_SWAP_INDEX
 
     -How to call task command:
     a) cf run-task api --command "python cli.py update_mapping_and_reload_legal_data case_index" -m 4G
