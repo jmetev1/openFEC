@@ -97,4 +97,4 @@ def load_regulations():
             regulation_part_count += 1
             logger.info("%d Regulation parts with %d documents are loaded.", regulation_part_count, document_count)
     else:
-        logger.info(" The index alias '{0}' is not found, can not load regulations.".format(AO_ALIAS))
+        logger.error(" The index alias '{0}' is not found, cannot load regulations.".format(AO_ALIAS))

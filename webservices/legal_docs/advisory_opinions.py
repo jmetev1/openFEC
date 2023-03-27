@@ -139,7 +139,7 @@ def load_advisory_opinions(from_ao_no=None):
         except Exception:
             pass
     else:
-        logger.info(" The index alias '{0}' is not found, can not load advisory opinions".format(AO_ALIAS))
+        logger.error(" The index alias '{0}' is not found, cannot load advisory opinions".format(AO_ALIAS))
 
 
 def ao_stage_to_pending(stage):
@@ -437,7 +437,7 @@ def get_citations(ao_names):
             es_client.index(AO_ALIAS, entry, id=entry["citation_text"])
         logger.info(" AO Citations loaded.")
     else:
-        logger.info(" The index alias '{0}' is not found, can not load AO Citations".format(AO_ALIAS))
+        logger.error(" The index alias '{0}' is not found, cannot load AO Citations".format(AO_ALIAS))
     return citations
 
 
