@@ -124,7 +124,7 @@ spec = APISpec(
         },
         'ApiKeyHeaderAuth': {
             'type': 'apiKey',
-            'name': 'X-Api-Key',
+            'name': 'X-Api-User-Id',
             'in': 'header',
         }
     },
